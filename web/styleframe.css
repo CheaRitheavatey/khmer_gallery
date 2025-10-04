@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+}
+
+.scene {
+    width: 100vw;
+    height: 100vh;
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.camera {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+}
+
+.hallway {
+    position: relative;
+    width: 1000px;
+    height: 100vh;
+    transform-style: preserve-3d;
+}
+
+/* Walls */
+.wall {
+    position: absolute;
+    width: 1000px;
+    height: 100vh;
+    background: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wall.left {
+    left: -500px;
+    transform: rotateY(90deg);
+    transform-origin: right center;
+}
+
+.wall.right {
+    right: -500px;
+    transform: rotateY(-90deg);
+    transform-origin: left center;
+}
+
+/* Floor and ceiling */
+.floor,
+.ceiling {
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    background: linear-gradient(to right, #663300, #442200);
+    transform-origin: top center;
+}
+
+.floor {
+    bottom: -500px;
+    transform: rotateX(90deg);
+}
+
+.ceiling {
+    top: -500px;
+    background: #333;
+    transform: rotateX(-90deg);
+}
+
+/* Frames */
+.frame {
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    border: 8px solid gold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+}
