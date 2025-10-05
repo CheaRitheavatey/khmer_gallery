@@ -1,30 +1,42 @@
-const camera = document.getElementById('camera');
+let nextButton = document.getElementById('next');
+let prevButton = document.getElementById('prev');
+let carousel = document.querySelector('.carousel');
+let listHTML = document.querySelector('.carousel .list');
+let seeMoreButtons = document.querySelectorAll('.seeMore');
+let backButton = document.getElementById('back');
 
-let posZ = 0;      // forward/back
-let rotY = 0;      // turn left/right
-let rotX = 0;      // look up/down
+nextButton.onclick = function(){
+    showSlider('next');
+}
+prevButton.onclick = function(){
+    showSlider('prev');
+}
+let unAcceppClick;
+const showSlider = (type) => {
+    nextButton.style.pointerEvents = 'none';
+    prevButton.style.pointerEvents = 'none';
 
-// Mouse movement controls rotation
-document.addEventListener('mousemove', (e) => {
-  const x = e.clientX / window.innerWidth - 0.5;
-  const y = e.clientY / window.innerHeight - 0.5;
-
-  rotY = x * 60; // rotate up to 60 degrees
-  rotX = -y * 30; // look up/down
-  updateCamera();
+    carousel.classList.remove('next', 'prev');
+    let items = document.querySelectorAll('.carousel .list .item');
+    if(type === 'next'){
+        listHTML.appendChild(items[0]);
+        carousel.classList.add('next');
+    }else{
+        listHTML.prepend(items[items.length - 1]);
+        carousel.classList.add('prev');
+    }
+    clearTimeout(unAcceppClick);
+    unAcceppClick = setTimeout(()=>{
+        nextButton.style.pointerEvents = 'auto';
+        prevButton.style.pointerEvents = 'auto';
+    }, 2000)
+}
+seeMoreButtons.forEach((button) => {
+    button.onclick = function(){
+        carousel.classList.remove('next', 'prev');
+        carousel.classList.add('showDetail');
+    }
 });
-
-// Keyboard movement (W/S)
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'w' || e.key === 'ArrowUp') posZ += 10;
-  if (e.key === 's' || e.key === 'ArrowDown') posZ -= 10;
-  updateCamera();
-});
-
-function updateCamera() {
-  camera.style.transform = `
-    rotateX(${rotX}deg)
-    rotateY(${rotY}deg)
-    translateZ(${posZ}px)
-  `;
+backButton.onclick = function(){
+    carousel.classList.remove('showDetail');
 }
