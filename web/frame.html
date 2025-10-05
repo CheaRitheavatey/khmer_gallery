@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Art Gallery</title>
     <link rel="stylesheet" href="styleframe.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
 </head>
 
 <body>
@@ -22,7 +24,10 @@
      <div class="carousel">
         <div class="list">
             <div class="item">
-                <img src="img/hairdryer.png" alt="">
+                <model-viewer src="img/angkor_wat.glb" alt="3D Art" camera-controls auto-rotate rotation-per-second="30deg"
+                    shadow-intensity="1" environment-image="neutral" style="width: 100%; height: 100%; border-radius: 20px;">
+                </model-viewer>
+                <!-- <img src="img/angkorwat.png" alt=""> -->
                 <div class="intro">
                     <div class="title">design slider</div>
                     <div class="topic">Aerophone</div>
@@ -187,7 +192,7 @@
         <div class="arrow">
             <button id="prev" class="prev"> < </button>
             <button id="next" class="next"> >​</button>
-            <button id="back" class="back">See All &#8599</button>
+            <button id="back" class="back">Go Back &#8599</button>
         </div>
      </div>
      

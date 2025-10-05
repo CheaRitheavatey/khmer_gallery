@@ -82,12 +82,19 @@ header nav a {
 }
 
 
-.carousel .list .item img {
+/* .carousel .list .item img {
     width: 50%;
     position: absolute;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+} */
+
+.carousel .list .item model-viewer {
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    background: transparent;
 }
 
 .carousel .list .item .detail {
